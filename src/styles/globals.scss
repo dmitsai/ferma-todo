@@ -1,0 +1,21 @@
+@import "variables.scss";
+@import "theme.scss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+* {
+    font-family:"Muller" ;
+}
+html,
+html[data-theme="light"] {
+  @include light;
+}
+
+html[data-theme="dark"] {
+  @include dark;
+}
+
+
+}

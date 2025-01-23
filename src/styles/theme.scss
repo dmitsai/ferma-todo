@@ -1,0 +1,14 @@
+@mixin light {
+    --primary: 48 50 75;
+    --sub: 164 164 164;
+    --green: 106 212 0;
+    --sub-green: 206 255 157;
+    --red: 255 47 47;
+    --sub-red: 255 184 184;
+    --gray: 242 243 245;
+
+}
+
+@mixin dark {
+
+}

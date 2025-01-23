@@ -1,16 +1,16 @@
 import type { Config } from "tailwindcss";
 
 export default {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./src/**/*.tsx"],
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        "primary":"rgb(var(--primary) / <alpha-value>)",
+        "sub":"rgb(var(--sub) / <alpha-value>)",
+        "green":"rgb(var(--green) / <alpha-value>)",
+        "sub-green":"rgb(var(--sub-green) / <alpha-value>)",
+        "sub-red":"rgb(var(--sub-red) / <alpha-value>)",
+        "gray": "rgb(var(--sub-red) / <alpha-value>)"
       },
     },
   },
