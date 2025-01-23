@@ -10,8 +10,12 @@ export default {
         "green":"rgb(var(--green) / <alpha-value>)",
         "sub-green":"rgb(var(--sub-green) / <alpha-value>)",
         "sub-red":"rgb(var(--sub-red) / <alpha-value>)",
-        "gray": "rgb(var(--sub-red) / <alpha-value>)"
+        "gray": "rgb(var(--gray) / <alpha-value>)",
+        "sub-gray": "rgb(var(--sub-gray) / <alpha-value>)",
       },
+      borderRadius: {
+        "btn": "var(--btn-border)",
+      }
     },
   },
   plugins: [],
