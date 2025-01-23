@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from 'next/font/local'
 import "~/styles/globals.scss";
+import StoreProvider from "./providers/StoreProvider";
 
 const muller = localFont({
   src: [
@@ -29,7 +30,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         className={`${muller.variable} antialiased`
         }
       >
-        {children}
+        <StoreProvider>
+          {children}
+        </StoreProvider>
       </body>
     </html >
   );
