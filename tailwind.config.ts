@@ -12,6 +12,7 @@ export default {
         "sub-red":"rgb(var(--sub-red) / <alpha-value>)",
         "gray": "rgb(var(--gray) / <alpha-value>)",
         "sub-gray": "rgb(var(--sub-gray) / <alpha-value>)",
+        "extra-gray":  "rgb(var(--extra-gray) / <alpha-value>)",
       },
       borderRadius: {
         "btn": "var(--btn-border)",
