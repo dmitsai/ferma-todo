@@ -65,5 +65,12 @@ const todoSlice = createSlice({
     }
 })
 
-export const {create, update, updateStatus,remove} = todoSlice.actions
+export const {create, update, updateStatus,remove} = todoSlice.actions;
+
 export default todoSlice.reducer;
+
+export const selectAll = (state: RootState) => state.todos.data;
+
+export const selectCompleted = (state: RootState) => state.todos.data.filter((todo) => todo.status === status.DONE);
+
+export const selectOpened = (state: RootState) => state.todos.data.filter((todo) => todo.status === status.OPEN);
