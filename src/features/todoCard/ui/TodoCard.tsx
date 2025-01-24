@@ -4,7 +4,7 @@ import { status, Todo } from "~/shared/lib/todo.types"
 import { formatDate } from "../model/utils";
 import EditIcon from '~/shared/assets/icons/edit-icon.svg';
 import RemoveIcon from '~/shared/assets/icons/remove-icon.svg';
-import { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, KeyboardEvent, MouseEventHandler, useEffect, useRef, useState } from "react";
 import cn from 'classnames';
 import { useDispatch } from 'react-redux';
 import { update, updateStatus, remove } from '~/shared/store/slices/todoSlice';
@@ -19,12 +19,12 @@ export const TodoCard: React.FC<TodoCardProps> = ({ todo }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [value, setValue] = useState(content);
     const [tempValue, setTempValue] = useState(content);
-    const cardRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
+    const cardRef = useRef<HTMLDivElement>(null);
 
     const dispatch = useDispatch();
 
-    const handleTextClick = () => {
+    const handleCheckboxClick = () => {
         if (!isEditing) {
             dispatch(updateStatus({ id, status: todoStatus === status.OPEN ? status.DONE : status.OPEN }))
         }
@@ -32,24 +32,24 @@ export const TodoCard: React.FC<TodoCardProps> = ({ todo }) => {
 
     const handleEdit = () => {
         setIsEditing(true);
-        if (inputRef.current) {
-            inputRef.current.focus();
-        }
+        setTempValue(value);
     };
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setTempValue(value);
         setValue(e.target.value);
     };
 
     const handleSave = () => {
         if (value.trim() === '') {
             setValue(tempValue);
-            dispatch(update({ id: id, content: tempValue }));
+            setIsEditing(false);
         } else {
-            dispatch(update({ id: id, content: value }));
+            if (value !== tempValue) {
+                dispatch(update({ id: id, content: value }));
+            }
         }
         setIsEditing(false);
+
     };
 
     const handleRemove = () => {
@@ -58,14 +58,7 @@ export const TodoCard: React.FC<TodoCardProps> = ({ todo }) => {
 
     const handleClickOutside = (e: MouseEvent) => {
         if (cardRef.current && !cardRef.current.contains(e.target as Node)) {
-            if (inputRef.current && !inputRef.current.contains(e.target as Node)) {
-                if (value.trim() === '') {
-                    setValue(tempValue)
-                }
-                handleSave();
-            }
-
-            setIsEditing(false);
+            handleSave();
         }
     }
 
@@ -83,8 +76,14 @@ export const TodoCard: React.FC<TodoCardProps> = ({ todo }) => {
         }
     }, [])
 
+    useEffect(() => {
+        if (isEditing && inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, [isEditing])
+
     return (
-        <div className={'flex flex-col gap-y-5 p-5 rounded-card shadow-card w-full'} ref={cardRef} onDoubleClick={handleEdit}>
+        <div className={'flex flex-col gap-y-4 p-4 rounded-card shadow-card w-full'} ref={cardRef} onDoubleClick={handleEdit}>
             <span className={'font-bold text-xl'}>{formatedDate}</span>
             <div className={'flex flex-col items-start'}>
                 <div className={'flex flex-row gap-x-8 items-start justify-start w-full cursor-pointer'}>
@@ -93,11 +92,11 @@ export const TodoCard: React.FC<TodoCardProps> = ({ todo }) => {
                             id={id}
                             type={'checkbox'}
                             className={cn(
-                                'peer/checkbox transition-colors appearance-none w-5 h-5 rounded-full border-2 border-sub',
+                                'peer/checkbox transition-colors appearance-none w-5 h-5 rounded-full border-2 border-sub cursor-pointer',
                                 'checked:bg-green checked:border-green hover:bg-extra-gray hover:border-sub  hover:checked:border-green hover:checked:bg-sub-green'
                             )}
                             checked={status.DONE === todoStatus}
-                            onChange={handleTextClick}
+                            onChange={handleCheckboxClick}
                         />
                     </div>
                     {
@@ -111,7 +110,7 @@ export const TodoCard: React.FC<TodoCardProps> = ({ todo }) => {
                                 ref={inputRef}
                             />
                             :
-                            <label htmlFor={id} className={'peer-checked/checkbox:line-through text-primary text-sm sm:text-base break-all cursor-pointer w-full'} >
+                            <label className={cn('text-primary text-sm sm:text-base break-all cursor-pointer w-full', status.DONE === todoStatus && 'line-through ')} >
                                 {value}
                             </label>
 

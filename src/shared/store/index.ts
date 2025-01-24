@@ -7,8 +7,7 @@ export const makeStore = () => {
         todos: todoReducer,
       },
     })
-  }
-
+}
 
 export type AppStore = ReturnType<typeof makeStore>
 export type RootState = ReturnType<AppStore['getState']>
