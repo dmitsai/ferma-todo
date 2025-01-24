@@ -18,6 +18,7 @@ export default {
         "extra-gray":"rgb(var(--extra-gray) / <alpha-value>)",
         "blue":"rgb(var(--blue) / <alpha-value>)",
         "sub-blue":"rgb(var(--sub-blue) / <alpha-value>)",
+        "sea":"rgb(var(--sea) / <alpha-value>)",
       },
       borderRadius: {
         "btn": "var(--btn-border)",
