@@ -1,5 +1,6 @@
-@import "variables.scss";
-@import "theme.scss";
+@use "variables.scss";
+@use "theme.scss";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,11 +11,11 @@
 }
 html,
 html[data-theme="light"] {
-  @include light;
+  @include theme.light;
 }
 
 html[data-theme="dark"] {
-  @include dark;
+  @include  theme.dark;
 }
 
 

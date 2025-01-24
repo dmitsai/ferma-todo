@@ -51,7 +51,7 @@ const todoSlice = createSlice({
         },
         update: (state, action: PayloadAction<{ id: string; content: string }>) => {
             const { id, content: updatedContent } = action.payload;
-            state.data.map(todo => todo.id !== id ? todo : { updatedContent, ...todo} )
+            state.data = state.data.map(todo => todo.id !== id ? todo : { id: todo.id, date: todo.date, status: todo.status , content: updatedContent } )
            
         },
         updateStatus: (state,action: PayloadAction<{id: string, status: Status}>) => {
@@ -71,6 +71,6 @@ export default todoSlice.reducer;
 
 export const selectAll = (state: RootState) => state.todos.data;
 
-export const selectCompleted = (state: RootState) => state.todos.data.filter((todo) => todo.status === status.DONE);
+export const selectCompleted = createSelector([selectAll],(todos) => todos.filter(todo => todo.status === status.DONE) );
 
-export const selectOpened = (state: RootState) => state.todos.data.filter((todo) => todo.status === status.OPEN);
+export const selectOpened = createSelector([selectAll],(todos) => todos.filter(todo => todo.status === status.OPEN) )
