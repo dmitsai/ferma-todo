@@ -1,7 +1,7 @@
 'use client';
 import { Button } from "~/shared/components/button";
 import { type TabsValues, tabsValues as tabs } from "../model/state";
-import cn from 'classNames';
+import cn from 'classnames';
 
 export interface TabsProps {
     selected: TabsValues,
