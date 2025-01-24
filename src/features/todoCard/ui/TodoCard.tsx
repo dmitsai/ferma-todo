@@ -32,6 +32,9 @@ export const TodoCard: React.FC<TodoCardProps> = ({ todo }) => {
 
     const handleEdit = () => {
         setIsEditing(true);
+        if (inputRef.current) {
+            inputRef.current.focus();
+        }
     };
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -40,7 +43,6 @@ export const TodoCard: React.FC<TodoCardProps> = ({ todo }) => {
     };
 
     const handleSave = () => {
-        console.log(value);
         if (value.trim() === '') {
             setValue(tempValue);
             dispatch(update({ id: id, content: tempValue }));
@@ -82,7 +84,7 @@ export const TodoCard: React.FC<TodoCardProps> = ({ todo }) => {
     }, [])
 
     return (
-        <div className={'flex flex-col gap-y-5 p-5 rounded-card shadow-card w-full'} ref={cardRef}>
+        <div className={'flex flex-col gap-y-5 p-5 rounded-card shadow-card w-full'} ref={cardRef} onDoubleClick={handleEdit}>
             <span className={'font-bold text-xl'}>{formatedDate}</span>
             <div className={'flex flex-col items-start'}>
                 <div className={'flex flex-row gap-x-8 items-start justify-start w-full cursor-pointer'}>
@@ -109,7 +111,7 @@ export const TodoCard: React.FC<TodoCardProps> = ({ todo }) => {
                                 ref={inputRef}
                             />
                             :
-                            <label htmlFor={id} className={'peer-checked/checkbox:line-through text-primary text-sm sm:text-base break-all cursor-pointer w-full'} onDoubleClick={handleEdit}>
+                            <label htmlFor={id} className={'peer-checked/checkbox:line-through text-primary text-sm sm:text-base break-all cursor-pointer w-full'} >
                                 {value}
                             </label>
 
