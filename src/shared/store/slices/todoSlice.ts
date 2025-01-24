@@ -47,7 +47,6 @@ const todoSlice = createSlice({
                 status: status.OPEN,
                 content: action.payload
             }
-            console.log('CREATED');
             state.data.push(created);
         },
         update: (state, action: PayloadAction<{ id: string; content: string }>) => {
