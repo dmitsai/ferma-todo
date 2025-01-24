@@ -11,3 +11,5 @@ export interface Todo {
     status: Status,
     content: string,
 }
+
+export const TODOS_KEY = 'todos-local-storage-key' as const;

@@ -31,7 +31,7 @@ export const TodoCreator: React.FC = () => {
         }
     };
     return (
-        <div className={'relative flex flex-row w-full text-2xl text-primary rounded-card shadow-card px-5 py-6 items-center'}>
+        <div className={'relative flex flex-row w-full text-sm sm:text-2xl text-primary rounded-card shadow-card px-3 sm:px-5 py-5 sm:py-6 items-center'}>
             <input
                 type={'text'}
                 value={value}
@@ -42,19 +42,19 @@ export const TodoCreator: React.FC = () => {
             <label
                 className={cn(
                     'absolute text-sub transition-all top-1/2 -translate-y-1/2 pointer-events-none',
-                    isDirty ? 'left-2 opacity-0' : ' left-5 opacity-100'
+                    isDirty ? 'left-2 opacity-0' : 'left-3 sm:left-5 opacity-100'
                 )}
             >
                 {'Создать задачу'}
             </label>
             <button
                 className={cn(
-                    'absolute top-1/2 -translate-y-1/2 flex  border-2 border-primary rounded-btn py-2 px-3 overflow-hidden transition-all',
+                    'items-center justify-center absolute top-1/2 -translate-y-1/2 flex border-2 border-primary rounded-btn py-0.5 sm:py-2 px-1 sm:px-3 overflow-hidden transition-all',
                     isDirty ? 'right-5 opacity-100' : 'right-2 opacity-0'
                 )}
                 onClick={handleCreate}
             >
-                <PlusIcon className={cn('fill-primary')} />
+                <PlusIcon className={cn('fill-primary scale-75 sm:scale-100')} />
             </button>
         </div>
     )

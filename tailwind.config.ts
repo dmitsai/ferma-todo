@@ -26,6 +26,12 @@ export default {
       },
       boxShadow: {
         "card": "var(--card-shadow)"
+      },
+      padding: {
+        "page":"var(--page-padding)"
+      },
+      maxWidth: {
+        "page": "var(--page-max-w)"
       }
     },
   },

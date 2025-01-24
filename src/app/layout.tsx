@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import localFont from 'next/font/local'
 import "~/styles/globals.scss";
@@ -26,13 +27,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
   return (
     <html lang="en" data-theme="light">
-      < body
-        className={`${muller.variable} antialiased`
-        }
-      >
-        <StoreProvider>
-          {children}
-        </StoreProvider>
+      <body className={`flex flex-col ${muller.variable} antialiased items-center`}>
+        <div className={'flex flex-col items-center justify-center max-w-page w-full'}>
+          <StoreProvider>
+            {children}
+          </StoreProvider>
+        </div>
       </body>
     </html >
   );
