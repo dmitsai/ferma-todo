@@ -26,7 +26,6 @@ export const TodoCard: React.FC<TodoCardProps> = ({ todo }) => {
 
     const handleTextClick = () => {
         if (!isEditing) {
-            console.log('TEXT CLICK');
             dispatch(updateStatus({ id, status: todoStatus === status.OPEN ? status.DONE : status.OPEN }))
         }
     };
@@ -75,7 +74,6 @@ export const TodoCard: React.FC<TodoCardProps> = ({ todo }) => {
     };
 
     useEffect(() => {
-        console.log('work')
         document.addEventListener('mousedown', handleClickOutside);
 
         return () => {
